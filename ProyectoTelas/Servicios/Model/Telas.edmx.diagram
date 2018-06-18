@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21f44badaf624bd0ab7c35db654b0eb5" Name="Diagram1">
+        <EntityTypeShape EntityType="TelasModel.Categoria" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="TelasModel.Contacto" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TelasModel.ImagenProducto" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="TelasModel.Producto" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="TelasModel.Promocion" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="TelasModel.Proveedor" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="TelasModel.Usuario" Width="1.5" PointX="7.75" PointY="0.75" />
+        <AssociationConnector Association="TelasModel.FK_Producto_Categoria" />
+        <AssociationConnector Association="TelasModel.FK_ImagenProducto_Producto" />
+        <AssociationConnector Association="TelasModel.FK_Promocion_Producto" />
+        <AssociationConnector Association="TelasModel.FK_Proveedor_Producto" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

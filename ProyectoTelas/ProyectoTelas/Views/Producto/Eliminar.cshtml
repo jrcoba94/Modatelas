@@ -1,0 +1,20 @@
+﻿@model Servicios.Model.Producto
+
+@{
+    Layout = null;
+}
+
+<h5 class="text-center">¿Está seguro de borrar este elemento?</h5>
+<div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger btn-sm" />
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>
+
