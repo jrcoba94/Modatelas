@@ -308,6 +308,9 @@
     <Content Include="Views\Promocion\Crear.cshtml" />
     <Content Include="Views\Promocion\Editar.cshtml" />
     <Content Include="Views\Promocion\Eliminar.cshtml" />
+    <Content Include="Views\Categoria\Crear.cshtml" />
+    <Content Include="Views\Categoria\Editar.cshtml" />
+    <Content Include="Views\Categoria\Eliminar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

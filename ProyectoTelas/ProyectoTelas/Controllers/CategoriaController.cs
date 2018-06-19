@@ -13,11 +13,97 @@ namespace ProyectoTelas.Controllers
 {
     public class CategoriaController : Controller
     {
+        #region Variables e instancias
+
+        private TelasEntities db = new TelasEntities();
+        public string UploadDirectory = "";
+        SrvCategoria oSrvCategoria = new SrvCategoria();
+
+        #endregion
 
         // GET: Categoria
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        #region Método que llama la vista Index para mostrar la lista de productos en el Table
+
         public ActionResult Index()
         {
-            return View();
+            var Category = db.Categoria.ToList();
+            return View(Category.ToList());
         }
+
+        #endregion
+
+        #region Método para crear una nueva Categoria
+
+        public ActionResult CreateCategory()
+        {
+            var model = oSrvCategoria.GetCategoria();
+
+            //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre");
+            return View("Crear", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCategory(Categoria oCategoria, HttpPostedFileBase files)
+        {
+            var model = oSrvCategoria.GetCategoria();
+
+            if (ModelState.IsValid)
+            {
+                db.Categoria.Add(oCategoria);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oCategoria);
+            return View("Crear", oCategoria);
+        }
+
+        #endregion
+
+        #region Método que permite modificar la información de una categoría
+
+        public ActionResult EditCategory(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Categoria oCategory = db.Categoria.Find(id);
+            if (oCategory == null)
+            {
+                return HttpNotFound();
+            }
+
+            //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oCategory);
+            return View("DetailsPromotions", oCategory);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCategory(/*[Bind(Include = "ProductoId,Nombre,Descripcion,FechaInicio,FechaFin,ProductoId,PrecioPromocion,UrlImagen")]*/ Categoria oCategory, HttpPostedFileBase files)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(oCategory).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oCategory.CategoriaID);
+            return View(oCategory);
+        }
+
+        #endregion
+
+        #region Método que permite dar de baja a una categoría
+
+
+
+        #endregion
     }
 }
