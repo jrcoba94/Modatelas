@@ -9,6 +9,7 @@ using System.Data;
 using System.Net;
 using PagedList;
 using Servicios.Model;
+using Servicios.Servicios;
 
 namespace ProyectoTelas.Controllers
 {
@@ -29,8 +30,8 @@ namespace ProyectoTelas.Controllers
         // GET: Productos/Create
         public ActionResult Create()
         {
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaId", "Nombre");
-            return View("Create");
+            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre");
+            return View("Crear");
         }
 
         // POST: Productos/Create
@@ -40,59 +41,68 @@ namespace ProyectoTelas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Producto producto, HttpPostedFileBase files, HttpPostedFileBase[] carrousel)
         {
-            if (ModelState.IsValid)
+            try
             {
 
-                UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
-                //string servername = Dashboard1._2.Properties.Settings.Default.NombreServidor;
-                HttpPostedFileBase file = Request.Files["files"];
-                var directorio = UploadDirectory;
-                string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
-                string resultFileName = pathRandom + '_' + file.FileName.Replace("~/", "");
-                string resultFileUrl = directorio + resultFileName;
-                string resultFilePath = System.Web.HttpContext.Current.Request.MapPath(resultFileUrl);
 
-                bool hasFile = false;
-                ImagenProducto oImgProduct = null;
-
-                var validate = db.Producto.Select(x => x.Nombre == producto.Nombre).First();
-                if (!validate)
+                if (ModelState.IsValid)
                 {
-                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+
+                    UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
+                    //string servername = Dashboard1._2.Properties.Settings.Default.NombreServidor;
+                    HttpPostedFileBase file = Request.Files["files"];
+                    var directorio = UploadDirectory;
+                    string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
+                    string resultFileName = pathRandom + '_' + file.FileName.Replace("~/", "");
+                    string resultFileUrl = directorio + resultFileName;
+                    string resultFilePath = System.Web.HttpContext.Current.Request.MapPath(resultFileUrl);
+
+                    bool hasFile = false;
+                    ImagenProducto oImgProduct = null;
+
+                    var validate = db.Producto.Select(x => x.Nombre == producto.Nombre).First();
+                    if (!validate)
                     {
-                        file.SaveAs(resultFilePath);
-                        producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                        {
+                            file.SaveAs(resultFilePath);
+                            producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
 
-                        oImgProduct = new ImagenProducto();
-                        //oImgProduct.Tipo = file.ContentType;
-                        oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
-                        //oImgProduct.Estatus = true;
+                            oImgProduct = new ImagenProducto();
+                            //oImgProduct.Tipo = file.ContentType;
+                            oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
+                            //oImgProduct.Estatus = true;
 
-                        hasFile = true;
-                    }
+                            hasFile = true;
+                        }
 
-                    //producto.Estatus = true;
-                    db.Producto.Add(producto);
-                    db.SaveChanges();
-
-                    oImgProduct.ProductoID = producto.ProductoID;
-                    db.ImagenProducto.Add(oImgProduct);
-                    db.SaveChanges();
-
-                    if (hasFile)
-                    {
-                        oImgProduct.ProductoID = producto.ProductoID;
+                        //producto.Estatus = true;
+                        db.Producto.Add(producto);
                         db.SaveChanges();
+
+                        oImgProduct.ProductoID = producto.ProductoID;
+                        db.ImagenProducto.Add(oImgProduct);
+                        db.SaveChanges();
+
+                        if (hasFile)
+                        {
+                            oImgProduct.ProductoID = producto.ProductoID;
+                            db.SaveChanges();
+                        }
+
+
+                        //}
+
+                        return RedirectToAction("Index");
                     }
-
-
-                    //}
-
-                    return RedirectToAction("Index");
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
 
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaId", "Nombre", producto.CategoriaID);
+            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
             return View(producto);
 
         }
@@ -114,8 +124,9 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaId", "Nombre", producto.CategoriaID);
-            return View(producto);
+            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            //return View(producto);
+            return View("Editar");
         }
 
         // POST: Productos/Edit/5
@@ -123,7 +134,7 @@ namespace ProyectoTelas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductoId,Codigo,Nombre,DescripcionCorta,Descripcion,CertificacionesInternacionales,DimensionMateriales,CaracteristicaDesempeño,Especificaciones,PrecioMinorista,Maximomuestra,Estatus,CategoriaId,UrlProducto,ImagenPortada")] Producto producto)
+        public ActionResult Edit(Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +142,8 @@ namespace ProyectoTelas.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaId", "Nombre", producto.CategoriaID);
+            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            //return View(producto);
             return View(producto);
         }
 
@@ -151,7 +163,7 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View("Eliminar");
         }
 
         // POST: Productos/Delete/5
@@ -162,8 +174,8 @@ namespace ProyectoTelas.Controllers
 
             Producto producto = db.Producto.Find(id);
             //producto.Estatus = false;
-            db.Entry(producto).State = EntityState.Modified;
-            //db.Producto.Remove(producto);
+            //db.Entry(producto).State = EntityState.Modified;
+            db.Producto.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

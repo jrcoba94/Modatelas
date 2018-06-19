@@ -8,20 +8,20 @@
     <h2>Proveedores</h2>
 </div>
 
-<p>
-    <button type="button" class="btn btn-default">
-        @Html.ActionLink("Nuevo", "CreatePromotion")
-    </button>
-</p>
-
 <div class="content-wrapper">
     <div class="container-fluid">
+
+        <p>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Nuevo", "CreatePromotion")
+            </button>
+        </p>
 
         <!-- Tabla de Registros-->
         <br /><br /><br />
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Registros
+                <i class="fa fa-table"></i> Promociones
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -63,7 +63,7 @@
                                     <td><img src="@item.Imagen" height="80" width="80" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>
                                     <td>
-                                        @Html.ActionLink("Editar", "UpdatePromotion", new { id = item.PromocionID })
+                                        @Html.ActionLink("Editar", "EditPromotion", new { id = item.PromocionID })
                                         @*@Html.ActionLink("Details", "DetailsProduc", new { id = item.ProductoID }) |*@
                                         @Html.ActionLink("Eliminar", "DeletePromotion", new { id = item.PromocionID })
                                     </td>

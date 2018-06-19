@@ -102,7 +102,29 @@ namespace ProyectoTelas.Controllers
 
         #region Método que permite dar de baja a una categoría
 
+        public ActionResult DeleteCategory(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Categoria oCategory = db.Categoria.Find(id);
+            if (oCategory == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Eliminar", oCategory);
+        }
 
+        [HttpPost, ActionName("DeleteCategory")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCategory(int id)
+        {
+            Categoria oCategory = db.Categoria.Find(id);
+            db.Categoria.Remove(oCategory);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         #endregion
     }

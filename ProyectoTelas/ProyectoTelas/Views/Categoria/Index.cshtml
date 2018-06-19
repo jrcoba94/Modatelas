@@ -1,1 +1,60 @@
-﻿
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model  IPagedList<Servicios.Model.Categoria>
+
+<h1 class="text-center">Categoría</h1>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <p>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Nuevo", "CreateCategory")
+            </button>
+        </p>
+
+        <!-- Tabla de Registros-->
+        <br /><br /><br />
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Categorías
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Tipo de Categoría</th>
+                            </tr>
+                        </thead>
+                        @*<tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Características</th>
+                                    <th>Imagen</th>
+                                    <th>Categoría</th>
+                                </tr>
+                            </tfoot>*@
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.CategoriaID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

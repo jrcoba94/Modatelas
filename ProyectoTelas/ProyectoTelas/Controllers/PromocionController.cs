@@ -41,8 +41,8 @@ namespace ProyectoTelas.Controllers
         {
             //var model = oSrvPromotions.getPromotions();
 
-            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoId", "Nombre");
-            return View("CreatePromotions");
+            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre");
+            return View("Crear");
         }
 
         [HttpPost]
@@ -51,50 +51,58 @@ namespace ProyectoTelas.Controllers
         {
             var model = oSrvPromotions.GetPromocion();
 
-            if (ModelState.IsValid)
+            try
             {
-                UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
-                //string servername = Dashboard1._2.Properties.Settings.Default.NombreServidor;
-                HttpPostedFileBase file = Request.Files["files"];
-                var directorio = UploadDirectory;
-                string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
-                string resultFileName = pathRandom + '_' + file.FileName.Replace("~/", "");
-                string resultFileUrl = directorio + resultFileName;
-                string resultFilePath = System.Web.HttpContext.Current.Request.MapPath(resultFileUrl);
 
-                bool hasFile = false;
-                ImagenProducto oImgProduct = null;
 
-                var validate = db.Promocion.Select(x => x.Nombre == oPromotion.Nombre).First();
-                if (!validate)
+                if (ModelState.IsValid)
                 {
-                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                    UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
+                    //string servername = Dashboard1._2.Properties.Settings.Default.NombreServidor;
+                    HttpPostedFileBase file = Request.Files["files"];
+                    var directorio = UploadDirectory;
+                    string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
+                    string resultFileName = pathRandom + '_' + file.FileName.Replace("~/", "");
+                    string resultFileUrl = directorio + resultFileName;
+                    string resultFilePath = System.Web.HttpContext.Current.Request.MapPath(resultFileUrl);
+
+                    bool hasFile = false;
+                    ImagenProducto oImgProduct = null;
+
+                    var validate = db.Promocion.Select(x => x.Nombre == oPromotion.Nombre).First();
+                    if (!validate)
                     {
-                        file.SaveAs(resultFilePath);
-                        oPromotion.UrlImagen = /*servername +*/ resultFileUrl.Replace("~/", "");
+                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                        {
+                            file.SaveAs(resultFilePath);
+                            oPromotion.Imagen = /*servername +*/ resultFileUrl.Replace("~/", "");
 
-                        oImgProduct = new ImagenProducto();
-                        //oImgProduct.Tipo = file.ContentType;
-                        oImgProduct.Url = oPromotion.UrlImagen.Replace("~/", "");
-                        //oImgProduct.Estatus = true;
-                        hasFile = true;
-                    }
+                            oImgProduct = new ImagenProducto();
+                            //oImgProduct.Tipo = file.ContentType;
+                            oImgProduct.Url = oPromotion.Imagen.Replace("~/", "");
+                            //oImgProduct.Estatus = true;
+                            hasFile = true;
+                        }
 
-                    db.Promocion.Add(oPromotion);
-                    db.SaveChanges();
-
-                    if (hasFile)
-                    {
-                        oImgProduct.ProductoID = oPromotion.PromocionID;
+                        db.Promocion.Add(oPromotion);
                         db.SaveChanges();
+
+                        if (hasFile)
+                        {
+                            oImgProduct.ProductoID = oPromotion.PromocionID;
+                            db.SaveChanges();
+                        }
+                        return RedirectToAction("Index");
                     }
-                    //here the notification is created
-                    return RedirectToAction("Index");
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error : " + ex.Message);
+            }
 
-            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoId", "Nombre", oPromotion.ProductoID);
-            return View("CreatePromotions", oPromotion);
+            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oPromotion.ProductoID);
+            return View("Crear", oPromotion);
             //return View(oPromotion);
         }
 
@@ -116,18 +124,25 @@ namespace ProyectoTelas.Controllers
             }
 
             ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oPromotion.ProductoID);
-            return View("DetailsPromotions", oPromotion);
+            return View("Editar", oPromotion);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditPromotion(/*[Bind(Include = "ProductoId,Nombre,Descripcion,FechaInicio,FechaFin,ProductoId,PrecioPromocion,UrlImagen")]*/ Promocion oPromocion, HttpPostedFileBase files)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(oPromocion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(oPromocion).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
             }
             ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oPromocion.ProductoID);
             return View(oPromocion);
@@ -148,7 +163,7 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            return View("DeletePromotions", oPromotion);
+            return View("Eliminar", oPromotion);
         }
 
         [HttpPost, ActionName("DeletePromotion")]

@@ -7,18 +7,24 @@
 
 <p>
     <button type="button" class="btn btn-default">
-        @Html.ActionLink("Nuevo", "CreateProduct")
+        @Html.ActionLink("Nuevo", "Create")
     </button>
 </p>
 
 <div class="content-wrapper">
     <div class="container-fluid">
 
+        <p>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Nuevo", "Create")
+            </button>
+        </p>
+
         <!-- Tabla de Registros-->
         <br /><br /><br />
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Registros
+                <i class="fa fa-table"></i> Productos
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -56,9 +62,9 @@
                                     <td><img src="@item.ImagenPortada" height="80" width="80" /></td>
                                     <td>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
                                     <td>
-                                        @Html.ActionLink("Editar", "UpdateProduct", new { id = item.ProductoID })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.ProductoID })
                                         @*@Html.ActionLink("Details", "DetailsProduc", new { id = item.ProductoID }) |*@
-                                        @Html.ActionLink("Eliminar", "DeleteProduct", new { id = item.ProductoID })
+                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.ProductoID })
                                     </td>
                                 </tr>                               
                             </tbody>
