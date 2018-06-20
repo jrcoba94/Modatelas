@@ -8,6 +8,7 @@ using Servicios.Servicios;
 using System.Net;
 using System.Data.Entity;
 using System.IO;
+using PagedList;
 
 namespace ProyectoTelas.Controllers
 {
@@ -29,10 +30,15 @@ namespace ProyectoTelas.Controllers
 
         #region Método que llama la vista Index para mostrar la lista de productos en el Table
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var Category = db.Categoria.ToList();
+        //    return View(Category.ToList());
+        //}
+
+        public ActionResult Index(int? page)
         {
-            var Category = db.Categoria.ToList();
-            return View(Category.ToList());
+            return View(db.Categoria.ToList().ToPagedList(page ?? 1, 5));
         }
 
         #endregion
@@ -44,7 +50,7 @@ namespace ProyectoTelas.Controllers
             var model = oSrvCategoria.GetCategoria();
 
             //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre");
-            return View("Crear", model);
+            return View("Crear");
         }
 
         [HttpPost]
@@ -81,7 +87,7 @@ namespace ProyectoTelas.Controllers
             }
 
             //ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oCategory);
-            return View("DetailsPromotions", oCategory);
+            return View("Editar", oCategory);
         }
 
         [HttpPost]

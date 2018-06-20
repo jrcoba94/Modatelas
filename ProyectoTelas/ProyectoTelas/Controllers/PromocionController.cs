@@ -145,7 +145,7 @@ namespace ProyectoTelas.Controllers
                 Console.WriteLine("Error: " + ex.Message);
             }
             ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oPromocion.ProductoID);
-            return View(oPromocion);
+            return View("Editar", oPromocion);
         }
 
         #endregion

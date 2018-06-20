@@ -144,7 +144,7 @@ namespace ProyectoTelas.Controllers
             }
             ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
             //return View(producto);
-            return View(producto);
+            return View("Index", producto);
         }
 
         #endregion

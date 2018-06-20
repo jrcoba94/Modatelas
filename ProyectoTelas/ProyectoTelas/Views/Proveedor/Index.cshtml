@@ -1,1 +1,61 @@
-﻿
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model  IPagedList<Servicios.Model.Proveedor>
+
+<h1 class="text-center">Proveedores</h1>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <p>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Nuevo", "CreateProveedor")
+            </button>
+        </p>
+
+        <!-- Tabla de Registros-->
+        <br /><br /><br />
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Proveedor
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Folio</th>
+                                <th>RFC</th>
+                                <th>Categoría</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.ProveedorID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NombreProveedor)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Folio)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.RFC)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "EditProveedor", new { id = item.ProveedorID })
+                                        @Html.ActionLink("Eliminar", "Borrar", new { id = item.ProveedorID })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -28,18 +28,9 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Tipo de Categoría</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
-                        @*<tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Características</th>
-                                    <th>Imagen</th>
-                                    <th>Categoría</th>
-                                </tr>
-                            </tfoot>*@
                         @foreach (var item in Model)
                         {
                             <tbody>
@@ -48,6 +39,10 @@
                                     <td>@Html.DisplayFor(modelItem => item.CategoriaID)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "EditCategory", new { id = item.CategoriaID })
+                                        @Html.ActionLink("Eliminar", "DeleteCategory", new { id = item.CategoriaID })
+                                    </td>
                                 </tr>
                             </tbody>
                         }

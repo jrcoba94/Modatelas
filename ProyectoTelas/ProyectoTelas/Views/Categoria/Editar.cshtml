@@ -1,1 +1,53 @@
-﻿
+﻿@model Servicios.Model.Categoria
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br />
+<h5 class="text-center">Editar</h5>
+@using (Html.BeginForm("EditCategory", "Categoria", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CategoriaID)
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <strong>Nombre</strong>
+                        </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            <strong>Tipo</strong>
+                        </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>       
+                <div class="form-group">
+                    <div class="col-md-8" style="padding-left:20px">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Volver", "Index")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

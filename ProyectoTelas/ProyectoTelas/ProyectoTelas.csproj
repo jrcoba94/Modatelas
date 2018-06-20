@@ -177,6 +177,16 @@
     <Content Include="Views\Categoria\Crear.cshtml" />
     <Content Include="Views\Categoria\Editar.cshtml" />
     <Content Include="Views\Categoria\Eliminar.cshtml" />
+    <Content Include="Views\Proveedor\Crear.cshtml" />
+    <Content Include="Views\Proveedor\Editar.cshtml" />
+    <Content Include="Views\Proveedor\Eliminar.cshtml" />
+    <Content Include="Views\Inicio\Nosotros.cshtml" />
+    <Content Include="Views\Inicio\Servicios.cshtml" />
+    <Content Include="Views\Inicio\Productos.cshtml" />
+    <Content Include="Views\Inicio\Contacto.cshtml" />
+    <Content Include="Views\Shared\_HeadsFE.cshtml" />
+    <Content Include="Views\Shared\_FooterFE.cshtml" />
+    <Content Include="Views\Shared\_NavbarFE.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
