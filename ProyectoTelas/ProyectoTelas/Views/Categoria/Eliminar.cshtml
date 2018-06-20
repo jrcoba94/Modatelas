@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h2>Eliminar</h2>
+    <h2>Eliminar Categoría</h2>
 </div>
 <br /><br /><br />
 <h5 class="text-center">¿Está seguro de borrar este elemento?</h5>
@@ -28,27 +28,25 @@
                         @Html.DisplayFor(model => model.Tipo)
                     </dd>
                 </dl>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="content-wrapper">
+                        <div class="container-fluid">
+                            <div class="form-horizontal">
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Borrar" class="btn btn-danger btn-sm" />
+                                    <button type="button" class="btn btn-default">
+                                        @Html.ActionLink("Volver", "Index")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
-
-    <hr />
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                <div class="form-horizontal">
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Borrar" class="btn btn-danger btn-sm" />
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Volver", "Index")
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
 </div>
 
 

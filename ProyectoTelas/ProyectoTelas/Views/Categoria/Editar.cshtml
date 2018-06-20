@@ -5,7 +5,7 @@
 }
 
 <br /><br /><br />
-<h5 class="text-center">Editar</h5>
+<h5 class="text-center">Editar Categoría</h5>
 @using (Html.BeginForm("EditCategory", "Categoria", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -38,12 +38,14 @@
                         </div>
                     </div>
                 </div>       
-                <div class="form-group">
-                    <div class="col-md-8" style="padding-left:20px">
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Volver", "Index")
-                        </button>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Volver", "Index")
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
