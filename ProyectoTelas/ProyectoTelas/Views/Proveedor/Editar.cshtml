@@ -1,0 +1,74 @@
+﻿@model Servicios.Model.Proveedor
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br />
+<h5 class="text-center">Editar Proveedores</h5>
+@using (Html.BeginForm("EditProveedor", "Proveedor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ProveedorID)
+
+                <div class="col-md-12 row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NombreProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NombreProveedor, new { htmlAttributes = new { @class = "form-control", @maxlength = "300" } })
+                                @Html.ValidationMessageFor(model => model.NombreProveedor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Folio, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control", cols = "45", rows = "5" } })
+                                @Html.ValidationMessageFor(model => model.Folio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RFC, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.RFC, new { htmlAttributes = new { @class = "form-control", @maxlength = "30" } })
+                                @Html.ValidationMessageFor(model => model.RFC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProductoID, "ProductoID", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("ProductoID", null, htmlAttributes: new { @class = "form-control", @style = "width:168px;" })
+                                @Html.ValidationMessageFor(model => model.ProductoID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Volver", "Index")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
