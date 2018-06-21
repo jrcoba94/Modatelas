@@ -9,6 +9,8 @@ namespace Servicios.Servicios
 {
     public class SrvPromociones
     {
+        private Entities db;
+
         #region Método que consulta la tabla promociones
 
         public List<Promocion> GetPromocion()
@@ -16,7 +18,7 @@ namespace Servicios.Servicios
             List<Promocion> oListPromocion = new List<Promocion>();
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     oListPromocion = db.Promocion.ToList();
                 }
@@ -36,7 +38,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     db.Promocion.Add(item);
                     db.SaveChanges();
@@ -56,7 +58,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Promocion oPromocion = db.Promocion.Where(x => x.PromocionID == item.PromocionID).FirstOrDefault();
                     if (oPromocion != null)
@@ -86,7 +88,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Promocion oPromocion = db.Promocion.Where(x => x.PromocionID == id).FirstOrDefault();
                     db.Promocion.Remove(oPromocion);

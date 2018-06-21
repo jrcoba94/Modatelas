@@ -9,6 +9,8 @@ namespace Servicios.Servicios
 {
     public class SrvUsuarios
     {
+        private Entities db;
+
         #region Método que consulta la tabla Usuarios
 
         public List<Usuario> GetUsuarios()
@@ -16,7 +18,7 @@ namespace Servicios.Servicios
             List<Usuario> oListUsuario = new List<Usuario>();
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     oListUsuario = db.Usuario.ToList();
                 }
@@ -36,7 +38,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     db.Usuario.Add(item);
                     db.SaveChanges();
@@ -56,7 +58,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Usuario oUsuario = db.Usuario.Where(x => x.UsuarioID == item.UsuarioID).FirstOrDefault();
                     if (oUsuario != null)

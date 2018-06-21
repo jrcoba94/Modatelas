@@ -17,12 +17,12 @@ namespace Servicios.Model
         public int PromocionID { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public Nullable<System.DateTime> FechaInicio { get; set; }
-        public Nullable<System.DateTime> FechaFin { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaFin { get; set; }
         public decimal PrecioPromocion { get; set; }
-        public string Imagen { get; set; }
         public int ProductoID { get; set; }
         public string UrlImagen { get; set; }
+        public string Imagen { get; set; }
     
         public virtual Producto Producto { get; set; }
     }

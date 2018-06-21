@@ -15,7 +15,7 @@ namespace ProyectoTelas.Controllers
 {
     public class ProductoController : Controller
     {
-        private TelasEntities db = new TelasEntities();
+        private Entities db = new Entities();
         public string UploadDirectory = "";
 
         // GET: Producto

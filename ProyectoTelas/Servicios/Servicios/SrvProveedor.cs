@@ -9,6 +9,8 @@ namespace Servicios.Servicios
 {
     public class SrvProveedor
     {
+        private Entities db;
+
         #region Método que consulta la tabla Proveedores
 
         public List<Proveedor> GetProveedor()
@@ -17,7 +19,7 @@ namespace Servicios.Servicios
             {
                 try
                 {
-                    using (TelasEntities db = new TelasEntities())
+                    using (db = new Entities())
                     {
                         oListProveedor = db.Proveedor.ToList();
                     }
@@ -38,7 +40,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     db.Proveedor.Add(item);
                     db.SaveChanges();
@@ -58,7 +60,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Proveedor oProveedor = db.Proveedor.Where(x => x.ProveedorID == item.ProveedorID).FirstOrDefault();
                     if (oProveedor != null)
@@ -84,7 +86,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Proveedor oProveedor = db.Proveedor.Where(x => x.ProveedorID == id).FirstOrDefault();
                     db.Proveedor.Remove(oProveedor);

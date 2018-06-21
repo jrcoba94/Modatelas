@@ -16,7 +16,7 @@ namespace ProyectoTelas.Controllers
     {
         #region Variables e instancias
 
-        private TelasEntities db = new TelasEntities();
+        private Entities db = new Entities();
         public string UploadDirectory = "";
         SrvCategoria oSrvCategoria = new SrvCategoria();
 

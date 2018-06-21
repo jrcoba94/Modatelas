@@ -19,7 +19,6 @@ namespace Servicios.Model
         {
             this.ImagenProducto = new HashSet<ImagenProducto>();
             this.Promocion = new HashSet<Promocion>();
-            this.Proveedor = new HashSet<Proveedor>();
         }
     
         public int ProductoID { get; set; }
@@ -28,13 +27,13 @@ namespace Servicios.Model
         public string Caracteristicas { get; set; }
         public string ImagenPortada { get; set; }
         public int CategoriaID { get; set; }
+        public int ProveedorID { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImagenProducto> ImagenProducto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promocion> Promocion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proveedor> Proveedor { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

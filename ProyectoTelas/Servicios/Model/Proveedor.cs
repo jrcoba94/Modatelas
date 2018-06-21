@@ -14,12 +14,18 @@ namespace Servicios.Model
     
     public partial class Proveedor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Proveedor()
+        {
+            this.Producto = new HashSet<Producto>();
+        }
+    
         public int ProveedorID { get; set; }
         public string NombreProveedor { get; set; }
         public string Folio { get; set; }
         public string RFC { get; set; }
-        public int ProductoID { get; set; }
     
-        public virtual Producto Producto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

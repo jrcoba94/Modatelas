@@ -15,7 +15,7 @@ namespace ProyectoTelas.Controllers
     {
         #region Variables e Instancias
 
-        private TelasEntities db = new TelasEntities();
+        private Entities db = new Entities();
         public string UploadDirectory = "";
         SrvPromociones oSrvPromotions = new SrvPromociones();
 

@@ -9,13 +9,15 @@ namespace Servicios.Servicios
 {
     public class SrvProducto
     {
+        private Entities db;
+
         #region Método que consulta la tabla producto
         public List<Producto> GetProducto()
         {
             List<Producto> oListProduct = new List<Producto>();
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     oListProduct = db.Producto.ToList();
                 }
@@ -34,7 +36,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     db.Producto.Add(item);
                     db.SaveChanges();
@@ -54,7 +56,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Producto oProducto = db.Producto.Where(x => x.ProductoID == item.ProductoID).FirstOrDefault();
                     if (oProducto != null)
@@ -81,7 +83,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Producto oProducto = db.Producto.Where(x => x.ProductoID == id).FirstOrDefault();
                     db.Producto.Remove(oProducto);

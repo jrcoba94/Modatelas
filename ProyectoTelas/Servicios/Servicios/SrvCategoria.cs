@@ -9,6 +9,8 @@ namespace Servicios.Servicios
 {
     public class SrvCategoria
     {
+        private Entities db;
+
         #region Método que consulta la tabla Categoria
 
         public List<Categoria> GetCategoria()
@@ -16,7 +18,7 @@ namespace Servicios.Servicios
             List<Categoria> oListCategory = new List<Categoria>();
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     oListCategory = db.Categoria.ToList();
                 }
@@ -36,7 +38,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
 
                 }
@@ -55,7 +57,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Categoria oCategory = db.Categoria.Where(x => x.CategoriaID == item.CategoriaID).FirstOrDefault();
                     if (oCategory != null)
@@ -80,7 +82,7 @@ namespace Servicios.Servicios
         {
             try
             {
-                using (TelasEntities db = new TelasEntities())
+                using (db = new Entities())
                 {
                     Categoria oCategory = db.Categoria.Where(x => x.CategoriaID == id).FirstOrDefault();
                     db.Categoria.Remove(oCategory);

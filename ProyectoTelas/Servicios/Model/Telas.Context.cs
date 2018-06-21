@@ -13,10 +13,10 @@ namespace Servicios.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TelasEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public TelasEntities()
-            : base("name=TelasEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

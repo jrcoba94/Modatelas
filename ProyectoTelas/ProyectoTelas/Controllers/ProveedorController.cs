@@ -15,7 +15,7 @@ namespace ProyectoTelas.Controllers
     {
         #region Variables e instancias
 
-        private TelasEntities db = new TelasEntities();
+        private Entities db = new Entities();
         public string UploadDirectory = "";
         SrvProveedor oSrvProveedor = new SrvProveedor();
 
@@ -98,7 +98,7 @@ namespace ProyectoTelas.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre", oProveedor.ProductoID);
+            ViewBag.ProductoId = new SelectList(db.Producto, "ProductoID", "Nombre");
             return View(oProveedor);
         }
 
