@@ -127,6 +127,9 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Sitio\bootstrap.css" />
+    <Content Include="Sitio\flexslider.css" />
+    <Content Include="Sitio\style.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Shared\_Heads.cshtml" />
@@ -147,6 +150,7 @@
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\PromocionController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\SitioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,13 +184,19 @@
     <Content Include="Views\Proveedor\Crear.cshtml" />
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Eliminar.cshtml" />
-    <Content Include="Views\Inicio\Nosotros.cshtml" />
-    <Content Include="Views\Inicio\Servicios.cshtml" />
-    <Content Include="Views\Inicio\Productos.cshtml" />
-    <Content Include="Views\Inicio\Contacto.cshtml" />
+    <Content Include="Views\Sitio\Nosotros.cshtml" />
+    <Content Include="Views\Sitio\Servicios.cshtml" />
+    <Content Include="Views\Sitio\Productos.cshtml" />
+    <Content Include="Views\Sitio\Contacto.cshtml" />
     <Content Include="Views\Shared\_HeadsFE.cshtml" />
     <Content Include="Views\Shared\_FooterFE.cshtml" />
     <Content Include="Views\Shared\_NavbarFE.cshtml" />
+    <Content Include="Sitio\analytics.js" />
+    <Content Include="Sitio\css.css" />
+    <Content Include="Sitio\css%281%29.css" />
+    <Content Include="Sitio\jquery.flexslider.js" />
+    <Content Include="Sitio\jquery.min.js" />
+    <Content Include="Views\Sitio\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
