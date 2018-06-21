@@ -1,13 +1,13 @@
 ﻿<div class="header-top">
     <div class="container">
         <div class="phone">
-            <h3><span>Phone</span> : +1 234 567 8907</h3>
+            <h3><span>Teléfono</span> : +52 1 999 997 0104</h3>
         </div>
         <div class="logo">
-            <a href="https://p.w3layouts.com/demos/textile/web/index.html"><img src="~/Sitio/logo.png" class="img-responsive" alt=""></a>
+            <a href="#"><img src="~/Sitio/logo.png" class="img-responsive" alt=""></a>
         </div>
         <div class="location">
-            <h3><span>locación</span> : 37 345 Calle 60, Centro, 97000 Mérida, Yuc.</h3>
+            <h3><span>localización</span> : 37 345 Calle 60, Centro, 97000 Mérida, Yuc.</h3>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -17,23 +17,24 @@
         <div class="head-nav">
             <span class="menu"> </span>
             <ul>
-                <li class="active"><a href="https://p.w3layouts.com/demos/textile/web/index.html">INICIO</a></li>
-                <li><a href="https://p.w3layouts.com/demos/textile/web/about.html">¿QUIENES SOMOS?</a></li>
-                <li><a href="https://p.w3layouts.com/demos/textile/web/services.html">MISION</a></li>
-                <li><a href="https://p.w3layouts.com/demos/textile/web/404.html">VISION</a></li>
-                <li><a href="https://p.w3layouts.com/demos/textile/web/blog.html">PRODUCTOS</a></li>
-                <li><a href="https://p.w3layouts.com/demos/textile/web/contact.html">CONTACTOS</a></li>
+                <li class="active"><a href="@Url.Action("Inicio", "Sitio")">INICIO</a></li>
+                <li><a href="@Url.Action("Nosotros", "Sitio")">¿QUIENES SOMOS?</a></li>
+                <li><a href="@Url.Action("Mision", "Sitio")">MISION</a></li>
+                <li><a href="@Url.Action("Vision", "Sitio")">VISION</a></li>
+                <li><a @*href="@Url.Action("Productos", "Sitio")"*@>PRODUCTOS</a></li>
+                <li><a href="@Url.Action("Contacto", "Sitio")">CONTACTANOS</a></li>
+                <li><a href="@Url.Action("Index", "Login")">LOGIN</a></li>
                 <div class="clearfix"> </div>
             </ul>
         </div>
         <div class="clearfix"> </div>
         <!-- script-for-nav -->
         <script>
-						$( "span.menu" ).click(function() {
-						  $( ".head-nav ul" ).slideToggle(300, function() {
-							// Animation complete.
-						  });
-						});
+            $("span.menu").click(function () {
+                $(".head-nav ul").slideToggle(300, function () {
+                    // Animation complete.
+                });
+            });
         </script>
         <!-- script-for-nav -->
         <section class="slider">
@@ -79,17 +80,17 @@
         <!-- FlexSlider -->
         <script defer="" src="~/Sitio/jquery.flexslider.js"></script>
         <script type="text/javascript">
-								$(function(){
-								  SyntaxHighlighter.all();
-								});
-								$(window).load(function(){
-								  $('.flexslider').flexslider({
-									animation: "slide",
-									start: function(slider){
-									  $('body').removeClass('loading');
-									}
-								  });
-								});
+            $(function () {
+                SyntaxHighlighter.all();
+            });
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
         </script>
         <!-- FlexSlider -->
     </div>

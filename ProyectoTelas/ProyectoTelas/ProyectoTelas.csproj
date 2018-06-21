@@ -185,7 +185,7 @@
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Eliminar.cshtml" />
     <Content Include="Views\Sitio\Nosotros.cshtml" />
-    <Content Include="Views\Sitio\Servicios.cshtml" />
+    <Content Include="Views\Sitio\Mision.cshtml" />
     <Content Include="Views\Sitio\Productos.cshtml" />
     <Content Include="Views\Sitio\Contacto.cshtml" />
     <Content Include="Views\Shared\_HeadsFE.cshtml" />
@@ -197,6 +197,7 @@
     <Content Include="Sitio\jquery.flexslider.js" />
     <Content Include="Sitio\jquery.min.js" />
     <Content Include="Views\Sitio\Index.cshtml" />
+    <Content Include="Views\Sitio\Vision.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

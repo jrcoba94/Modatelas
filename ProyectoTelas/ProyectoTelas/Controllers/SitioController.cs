@@ -13,5 +13,25 @@ namespace ProyectoTelas.Controllers
         {
             return View("Index");
         }
+
+        public ActionResult Nosotros()
+        {
+            return View("Nosotros");
+        }
+
+        public ActionResult Mision()
+        {
+            return View("Mision");
+        }
+
+        public ActionResult Vision()
+        {
+            return View("Vision");
+        }
+
+        public ActionResult Contacto()
+        {
+            return View("Contacto");
+        }
     }
 }
