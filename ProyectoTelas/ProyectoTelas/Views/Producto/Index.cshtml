@@ -53,7 +53,7 @@
                                     <td>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ProductoID })
-                                        @*@Html.ActionLink("Details", "DetailsProduc", new { id = item.ProductoID }) |*@
+                                        @Html.ActionLink("Detalle", "Detalles", new { id = item.ProductoID })
                                         @Html.ActionLink("Eliminar", "Delete", new { id = item.ProductoID })
                                     </td>
                                 </tr>                               

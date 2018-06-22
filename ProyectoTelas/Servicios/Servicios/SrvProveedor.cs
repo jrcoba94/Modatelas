@@ -32,6 +32,25 @@ namespace Servicios.Servicios
             return oListProveedor;
         }
 
+        public List<Proveedor> GetProveedorByID(int id)
+        {
+            List<Proveedor> oListProveedor = new List<Proveedor>();
+            {
+                try
+                {
+                    using (db = new Entities())
+                    {
+                        oListProveedor = db.Proveedor.Where(x => x.ProveedorID == id).ToList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(SrvMessages.getMessageSQL(ex));
+                }
+            }
+            return oListProveedor;
+        }
+
         #endregion
 
         #region Método que permite dar de alta a un nuevo proveedor

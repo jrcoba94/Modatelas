@@ -198,6 +198,8 @@
     <Content Include="Sitio\jquery.min.js" />
     <Content Include="Views\Sitio\Index.cshtml" />
     <Content Include="Views\Sitio\Vision.cshtml" />
+    <Content Include="Views\Proveedor\Detalle.cshtml" />
+    <Content Include="Views\Producto\Detalle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

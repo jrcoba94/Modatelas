@@ -2,7 +2,7 @@
 <!-- footer -->
 <footer class="footer">
     <div class="container">
-        <div class="col-md-4 keep">
+        @*<div class="col-md-4 keep">
             <h4>Mantente Conectado</h4>
             <div class="social">
                 <ul>
@@ -13,19 +13,22 @@
                     <div class="clearfix"></div>
                 </ul>
             </div>
-        </div>
-        <div class="col-md-4 say">
+        </div>*@
+        <div class="col-md-6 say">
             <h4>Envíanos tú opinión</h4>
-            <form>
+            <form method="post" action="~/Sitio/Contacto">
                 <div class="form_details">
-                    <input type="text" class="text" value="Nombre" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Name&#39;;}">
-                    <input type="text" class="text" value="Correo Electrónico" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Email&#39;;}">
-                    <textarea value="Comentario:" onfocus="if(this.value == &#39;Message&#39;) this.value=&#39;&#39;;" onblur="if(this.value == &#39;&#39;) this.value=&#39;Message&#39;;">Comentario</textarea>
-                    <input type="submit" value="Enviar">
+                    <input placeholder="Nombre" type="text" class="text" value="nombre" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Name&#39;;}">
+                    <input placeholder="Correo" type="text" class="text" value="correo" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Email&#39;;}">
+                    <textarea placeholder="Comentario" value="comentario" onfocus="if(this.value == &#39;Message&#39;) this.value=&#39;&#39;;" onblur="if(this.value == &#39;&#39;) this.value=&#39;Message&#39;;"></textarea>
+                    <input type="submit" value="Enviar" id="enviar">
+                    <h2 style="color:#FFFFFF;">
+                        @ViewBag.Mensaje
+                    </h2>
                 </div>
             </form>
         </div>
-        <div class="col-md-4 our">
+        <div class="col-md-6 our">
             <h4>Nuestra Oficina</h4>
             <div class="ic-da">
                 <div class="icon">
@@ -36,12 +39,12 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <h6>E-mail: <a href="https://p.w3layouts.com/demos/textile/web/#">grupopromotoraresidencial@hotmail.com</a></h6>
+            <h6>E-mail: <a href="">grupopromotoraresidencial@hotmail.com</a></h6>
             <h5>Calle 60, Centro, 97000 Mérida, Yuc.</h5>
         </div>
         <div class="clearfix"> </div>
         <div class="bottom">
-            <p>Copyright © Telas Méxicanas 2018</p>
+            <p class="text-center">Copyright © Telas Méxicanas 2018</p>
         </div>
     </div>
 </footer>

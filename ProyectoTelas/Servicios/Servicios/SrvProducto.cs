@@ -28,6 +28,23 @@ namespace Servicios.Servicios
             }
             return oListProduct;
         }
+
+        public List<Producto> GetProductoByID(int id)
+        {
+            List<Producto> oListProduct = new List<Producto>();
+            try
+            {
+                using (db = new Entities())
+                {
+                    oListProduct = db.Producto.Where(x => x.ProductoID == id).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(SrvMessages.getMessageSQL(ex));
+            }
+            return oListProduct;
+        }
         #endregion
 
         #region Método que permite dar de alta a un nuevo producto
