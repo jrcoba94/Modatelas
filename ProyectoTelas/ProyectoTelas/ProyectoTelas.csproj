@@ -106,6 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\sb-admin.css" />
+    <Content Include="Content\images\bg_direction_nav.png" />
+    <Content Include="Content\js\FEjquery.flexslider.js" />
     <Content Include="Content\js\sb-admin-datatables.js" />
     <Content Include="Content\js\sb-admin-datatables.min.js" />
     <Content Include="Content\js\sb-admin.js" />
@@ -127,9 +129,9 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\js\jquery.min.js" />
-    <Content Include="Sitio\bootstrap.css" />
-    <Content Include="Sitio\flexslider.css" />
-    <Content Include="Sitio\style.css" />
+    <Content Include="Content\css\FEbootstrap.css" />
+    <Content Include="Content\css\FEflexslider.css" />
+    <Content Include="Content\css\FEstyle.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Shared\_Heads.cshtml" />
@@ -191,11 +193,8 @@
     <Content Include="Views\Shared\_HeadsFE.cshtml" />
     <Content Include="Views\Shared\_FooterFE.cshtml" />
     <Content Include="Views\Shared\_NavbarFE.cshtml" />
-    <Content Include="Sitio\analytics.js" />
-    <Content Include="Sitio\css.css" />
-    <Content Include="Sitio\css%281%29.css" />
-    <Content Include="Sitio\jquery.flexslider.js" />
-    <Content Include="Sitio\jquery.min.js" />
+    <Content Include="Content\js\analytics.js" />
+    <Content Include="Content\js\FEjquery.min.js" />
     <Content Include="Views\Sitio\Index.cshtml" />
     <Content Include="Views\Sitio\Vision.cshtml" />
     <Content Include="Views\Proveedor\Detalle.cshtml" />
