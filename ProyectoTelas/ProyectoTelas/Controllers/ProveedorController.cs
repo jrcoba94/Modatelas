@@ -26,6 +26,20 @@ namespace ProyectoTelas.Controllers
         //    return View();
         //}
 
+        public ActionResult Detalles(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Proveedor oProveedor = db.Proveedor.Find(id);
+            if (oProveedor == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Detalle", oProveedor);
+        }
+
         #region Método que llama la vista Index para mostrar la lista de productos en el Table
 
         //public ActionResult Index()

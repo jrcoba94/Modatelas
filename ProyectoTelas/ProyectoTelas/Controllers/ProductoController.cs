@@ -15,6 +15,7 @@ namespace ProyectoTelas.Controllers
 {
     public class ProductoController : Controller
     {
+        SrvProducto oSrvProducto = new SrvProducto();
         private Entities db = new Entities();
         public string UploadDirectory = "";
 
@@ -25,12 +26,19 @@ namespace ProyectoTelas.Controllers
             //return View();
         }
 
+        public ActionResult Detalles(int id)
+        {
+            var model = oSrvProducto.GetProductoByID(id);
+            return View("Detalle", model);
+        }
+
         #region Método que se encarga de dar de alta a un nuevo Producto
 
         // GET: Productos/Create
         public ActionResult Create()
         {
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre");
+            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre");
+            ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor");
             return View("Crear");
         }
 
@@ -102,7 +110,8 @@ namespace ProyectoTelas.Controllers
                 Console.WriteLine("Error: " + ex.Message);
             }
 
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
             return View(producto);
 
         }
@@ -124,7 +133,8 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
             //return View(producto);
             return View("Editar");
         }
@@ -142,7 +152,8 @@ namespace ProyectoTelas.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
             //return View(producto);
             return View("Index", producto);
         }

@@ -29,7 +29,6 @@
                                 <th>Nombre</th>
                                 <th>Folio</th>
                                 <th>RFC</th>
-                                <th>Categoría</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -42,9 +41,10 @@
                                     <td>@Html.DisplayFor(modelItem => item.NombreProveedor)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Folio)</td>
                                     <td>@Html.DisplayFor(modelItem => item.RFC)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>
+                                    @*<td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>*@
                                     <td>
                                         @Html.ActionLink("Editar", "EditProveedor", new { id = item.ProveedorID })
+                                        @Html.ActionLink("Detalle", "Detalles", new { id = item.ProveedorID }) 
                                         @Html.ActionLink("Eliminar", "Borrar", new { id = item.ProveedorID })
                                     </td>
                                 </tr>
