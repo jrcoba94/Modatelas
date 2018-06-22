@@ -233,8 +233,8 @@ a.read {
 a.read:hover{
 	background:#5c5c5c;
 }
-.phase-bottom {
-	background: url(http://drive.google.com/uc?export=view&id=1ZyfXA9Y8wo_YQp1diSNK74XYIcS4J2nF) no-repeat;
+/*.phase-bottom {
+	background: url(http://drive.google.com/uc?export=view&id=1VUe_adLxyCLaEVzvvJqT7RwJ8-FsoiOg) no-repeat;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -243,7 +243,7 @@ a.read:hover{
 	min-height: 300px;
 	text-align: left;
 	padding: 8em 0px;
-}
+}*/
 .phase-bottom-left h2 {
 	color: #fff;
 	font-size: 2.5em;
@@ -395,14 +395,14 @@ i.in:hover{
 	line-height: 1.8em;
 	margin: 2em 0 0;
 }
-i.mob {
+/*i.mob {
 	width: 20px;
 	height: 32px;
-	background: url(http://drive.google.com/uc?export=view&id=1FUoPOvWq0kRZkIbQW8FN__wIEfBUrGbB)no-repeat 0px 1px;
+	background: url(http://drive.google.com/uc?export=view&id=1VUe_adLxyCLaEVzvvJqT7RwJ8-FsoiOg)no-repeat 0px 1px;
 	float: left;
 	vertical-align: middle;
 	display: block;
-}
+}*/
 .say div input[type="text"] {
 	width: 100%;
 	padding:0.6em 1em;
@@ -1418,7 +1418,7 @@ ul.comment-list .desc {
 	right:22px;
 }	
 .head-nav span.menu:before{
-	content:url(http://drive.google.com/uc?export=view&id=1FUoPOvWq0kRZkIbQW8FN__wIEfBUrGbB);
+	content:url(http://drive.google.com/uc?export=view&id=1VUe_adLxyCLaEVzvvJqT7RwJ8-FsoiOg);
 	color:#FFF;
 	font-size:1.3em;
 	text-transform:uppercase;

@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\sb-admin.css" />
+    <Content Include="Content\images\bg_direction_nav.png" />
     <Content Include="Content\js\FEjquery.flexslider.js" />
     <Content Include="Content\js\sb-admin-datatables.js" />
     <Content Include="Content\js\sb-admin-datatables.min.js" />
