@@ -2,25 +2,13 @@
 <!-- footer -->
 <footer class="footer">
     <div class="container">
-        @*<div class="col-md-4 keep">
-            <h4>Mantente Conectado</h4>
-            <div class="social">
-                <ul>
-                    <li><a href="https://p.w3layouts.com/demos/textile/web/#"><i class="facebok"> </i></a></li>
-                    <li><a href="https://p.w3layouts.com/demos/textile/web/#"><i class="twiter"> </i></a></li>
-                    <li><a href="https://p.w3layouts.com/demos/textile/web/#"><i class="drible"> </i></a></li>
-                    <li><a href="https://p.w3layouts.com/demos/textile/web/#"><i class="in"> </i></a></li>
-                    <div class="clearfix"></div>
-                </ul>
-            </div>
-        </div>*@
         <div class="col-md-6 say">
             <h4>Envíanos tú opinión</h4>
             <form method="post" action="~/Sitio/Contacto">
                 <div class="form_details">
-                    <input placeholder="Nombre" type="text" class="text" value="nombre" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Name&#39;;}">
-                    <input placeholder="Correo" type="text" class="text" value="correo" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Email&#39;;}">
-                    <textarea placeholder="Comentario" value="comentario" onfocus="if(this.value == &#39;Message&#39;) this.value=&#39;&#39;;" onblur="if(this.value == &#39;&#39;) this.value=&#39;Message&#39;;"></textarea>
+                    <input placeholder="Nombre" type="text" class="text" name="subject" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Name&#39;;}">
+                    <input placeholder="Correo" type="text" class="text" name="receiverEmail" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Email&#39;;}">
+                    <textarea placeholder="Comentario" name="message" onfocus="if(this.value == &#39;Message&#39;) this.value=&#39;&#39;;" onblur="if(this.value == &#39;&#39;) this.value=&#39;Message&#39;;"></textarea>
                     <input type="submit" value="Enviar" id="enviar">
                     <h2 style="color:#FFFFFF;">
                         @ViewBag.Mensaje
@@ -39,7 +27,7 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <h6>E-mail: <a href="">grupopromotoraresidencial@hotmail.com</a></h6>
+            <h6>E-mail: <a href="">telasmexicanasdelsur@hotmail.com</a></h6>
             <h5>Calle 60, Centro, 97000 Mérida, Yuc.</h5>
         </div>
         <div class="clearfix"> </div>

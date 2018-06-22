@@ -119,5 +119,47 @@ namespace Servicios.Servicios
         }
 
         #endregion
+
+
+        #region Método que consulta la tabla Contacto
+
+        public List<Contacto> getContacto()
+        {
+            List<Contacto> oListContacto = new List<Contacto>();
+            try
+            {
+                using (db = new Entities())
+                {
+                    oListContacto = db.Contacto.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(SrvMessages.getMessageSQL(ex));
+            }
+            return oListContacto;
+        }
+
+        #endregion
+
+        #region Método que permite guardar la información de contacto en la BD
+
+        public void MandarCorreo(Contacto item)
+        {
+            try
+            {
+                using (db = new Entities())
+                {
+                    db.Contacto.Add(item);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(SrvMessages.getMessageSQL(ex));
+            }
+        }
+
+        #endregion
     }
 }
