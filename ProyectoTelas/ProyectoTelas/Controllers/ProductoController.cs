@@ -28,8 +28,16 @@ namespace ProyectoTelas.Controllers
 
         public ActionResult Detalles(int id)
         {
-            var model = oSrvProducto.GetProductoByID(id);
-            return View("Detalle", model);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Producto oProducto = db.Producto.Find(id);
+            if (oProducto == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Detalle", oProducto);
         }
 
         #region Método que se encarga de dar de alta a un nuevo Producto
@@ -102,11 +110,11 @@ namespace ProyectoTelas.Controllers
                     }
 
 
-                    //    //}
-
-                    //    return RedirectToAction("Index");
                     //}
+
+                    return RedirectToAction("Index");
                 }
+            //}
             }
             catch (Exception ex)
             {
@@ -136,10 +144,8 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
             ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
-            //return View(producto);
-            return View("Editar");
+            return View("Editar", producto);
         }
 
         // POST: Productos/Edit/5
@@ -149,16 +155,22 @@ namespace ProyectoTelas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Producto producto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(producto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
+            catch (Exception ex)
+            {
+                throw new Exception(SrvMessages.getMessageSQL(ex));
+            }
             ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
-            //return View(producto);
-            return View("Index", producto);
+            return View(producto);
+            //return View("Index", producto);
         }
 
         #endregion
@@ -177,7 +189,7 @@ namespace ProyectoTelas.Controllers
             {
                 return HttpNotFound();
             }
-            return View("Eliminar");
+            return View("Eliminar", producto);
         }
 
         // POST: Productos/Delete/5
@@ -187,8 +199,6 @@ namespace ProyectoTelas.Controllers
         {
 
             Producto producto = db.Producto.Find(id);
-            //producto.Estatus = false;
-            //db.Entry(producto).State = EntityState.Modified;
             db.Producto.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
