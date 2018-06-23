@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TelasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Categoria">
-          <Key>
-            <PropertyRef Name="CategoriaID" />
-          </Key>
-          <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="20" />
-          <Property Name="Tipo" Type="varchar" MaxLength="20" />
-        </EntityType>
         <EntityType Name="Contacto">
           <Key>
             <PropertyRef Name="ContactoID" />
@@ -40,7 +32,6 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
           <Property Name="Caracteristicas" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ImagenPortada" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="CategoriaID" Type="int" Nullable="false" />
           <Property Name="ProveedorID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Promocion">
@@ -92,18 +83,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Producto_Categoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categoria">
-              <PropertyRef Name="CategoriaID" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="CategoriaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Promocion_Producto">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Promocion" Type="Self.Promocion" Multiplicity="*" />
@@ -129,7 +108,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TelasModelStoreContainer">
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImagenProducto" EntityType="Self.ImagenProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
@@ -139,10 +117,6 @@
           <AssociationSet Name="FK_ImagenProducto_Producto" Association="Self.FK_ImagenProducto_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ImagenProducto" EntitySet="ImagenProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Producto_Categoria" Association="Self.FK_Producto_Categoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
           <AssociationSet Name="FK_Promocion_Producto" Association="Self.FK_Promocion_Producto">
             <End Role="Producto" EntitySet="Producto" />
@@ -157,15 +131,26 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TelasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Categoria">
-          <Key>
-            <PropertyRef Name="CategoriaID" />
-          </Key>
-          <Property Name="CategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Categoria" FromRole="Categoria" ToRole="Producto" />
-        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacto" EntityType="TelasModel.Contacto" />
+          <EntitySet Name="ImagenProducto" EntityType="TelasModel.ImagenProducto" />
+          <EntitySet Name="Producto" EntityType="TelasModel.Producto" />
+          <EntitySet Name="Promocion" EntityType="TelasModel.Promocion" />
+          <EntitySet Name="Proveedor" EntityType="TelasModel.Proveedor" />
+          <EntitySet Name="Usuario" EntityType="TelasModel.Usuario" />
+          <AssociationSet Name="FK_ImagenProducto_Producto" Association="TelasModel.FK_ImagenProducto_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ImagenProducto" EntitySet="ImagenProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocion_Producto" Association="TelasModel.FK_Promocion_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Promocion" EntitySet="Promocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedor_Producto" Association="TelasModel.FK_Proveedor_Producto">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Contacto">
           <Key>
             <PropertyRef Name="ContactoID" />
@@ -181,9 +166,9 @@
           </Key>
           <Property Name="ImagenProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="Int16" Nullable="false" />
-          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProductoID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_ImagenProducto_Producto" FromRole="ImagenProducto" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="TelasModel.FK_ImagenProducto_Producto" FromRole="ImagenProducto" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -192,14 +177,12 @@
           <Property Name="ProductoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Caracteristicas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ImagenPortada" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CategoriaID" Type="Int32" Nullable="false" />
+          <Property Name="Caracteristicas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagenPortada" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ProveedorID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Categoria" Relationship="Self.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
-          <NavigationProperty Name="ImagenProducto" Relationship="Self.FK_ImagenProducto_Producto" FromRole="Producto" ToRole="ImagenProducto" />
-          <NavigationProperty Name="Promocion" Relationship="Self.FK_Promocion_Producto" FromRole="Producto" ToRole="Promocion" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Proveedor_Producto" FromRole="Producto" ToRole="Proveedor" />
+          <NavigationProperty Name="ImagenProducto" Relationship="TelasModel.FK_ImagenProducto_Producto" FromRole="Producto" ToRole="ImagenProducto" />
+          <NavigationProperty Name="Promocion" Relationship="TelasModel.FK_Promocion_Producto" FromRole="Producto" ToRole="Promocion" />
+          <NavigationProperty Name="Proveedor" Relationship="TelasModel.FK_Proveedor_Producto" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Promocion">
           <Key>
@@ -210,51 +193,39 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PrecioPromocion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PrecioPromocion" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="ProductoID" Type="Int32" Nullable="false" />
           <Property Name="UrlImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Promocion_Producto" FromRole="Promocion" ToRole="Producto" />
           <Property Name="Imagen" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="TelasModel.FK_Promocion_Producto" FromRole="Promocion" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
             <PropertyRef Name="ProveedorID" />
           </Key>
           <Property Name="ProveedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreProveedor" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Folio" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Proveedor_Producto" FromRole="Proveedor" ToRole="Producto" />
+          <Property Name="NombreProveedor" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Folio" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producto" Relationship="TelasModel.FK_Proveedor_Producto" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="UsuarioID" />
           </Key>
           <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Contrasenia" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Producto_Categoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categoria">
-              <PropertyRef Name="CategoriaID" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="CategoriaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ImagenProducto_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+          <End Type="TelasModel.Producto" Role="Producto" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ImagenProducto" Type="Self.ImagenProducto" Multiplicity="*" />
+          <End Type="TelasModel.ImagenProducto" Role="ImagenProducto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="ProductoID" />
@@ -265,8 +236,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Promocion_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Promocion" Type="Self.Promocion" Multiplicity="*" />
+          <End Type="TelasModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="TelasModel.Promocion" Role="Promocion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="ProductoID" />
@@ -277,8 +248,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Proveedor_Producto">
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Type="TelasModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="TelasModel.Producto" Role="Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
               <PropertyRef Name="ProveedorID" />
@@ -288,76 +259,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Contacto" EntityType="Self.Contacto" />
-          <EntitySet Name="ImagenProducto" EntityType="Self.ImagenProducto" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="Promocion" EntityType="Self.Promocion" />
-          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK_Producto_Categoria" Association="Self.FK_Producto_Categoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImagenProducto_Producto" Association="Self.FK_ImagenProducto_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="ImagenProducto" EntitySet="ImagenProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Promocion_Producto" Association="Self.FK_Promocion_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Promocion" EntitySet="Promocion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proveedor_Producto" Association="Self.FK_Proveedor_Producto">
-            <End Role="Proveedor" EntitySet="Proveedor" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TelasModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Categoria">
-            <EntityTypeMapping TypeName="TelasModel.Categoria">
-              <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contacto">
             <EntityTypeMapping TypeName="TelasModel.Contacto">
               <MappingFragment StoreEntitySet="Contacto">
-                <ScalarProperty Name="ContactoID" ColumnName="ContactoID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ContactoID" ColumnName="ContactoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ImagenProducto">
             <EntityTypeMapping TypeName="TelasModel.ImagenProducto">
               <MappingFragment StoreEntitySet="ImagenProducto">
-                <ScalarProperty Name="ImagenProductoID" ColumnName="ImagenProductoID" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ImagenProductoID" ColumnName="ImagenProductoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="TelasModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
-                <ScalarProperty Name="ImagenPortada" ColumnName="ImagenPortada" />
-                <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
                 <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
+                <ScalarProperty Name="ImagenPortada" ColumnName="ImagenPortada" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -365,37 +301,37 @@
             <EntityTypeMapping TypeName="TelasModel.Promocion">
               <MappingFragment StoreEntitySet="Promocion">
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-                <ScalarProperty Name="PromocionID" ColumnName="PromocionID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="PrecioPromocion" ColumnName="PrecioPromocion" />
-                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
                 <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+                <ScalarProperty Name="ProductoID" ColumnName="ProductoID" />
+                <ScalarProperty Name="PrecioPromocion" ColumnName="PrecioPromocion" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PromocionID" ColumnName="PromocionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
             <EntityTypeMapping TypeName="TelasModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
-                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
-                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
-                <ScalarProperty Name="Folio" ColumnName="Folio" />
                 <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="ProveedorID" ColumnName="ProveedorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="TelasModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
-                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
-                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

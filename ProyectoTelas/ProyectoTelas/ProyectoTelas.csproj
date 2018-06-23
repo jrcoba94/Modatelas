@@ -146,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -168,7 +167,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Promocion\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
@@ -180,9 +178,6 @@
     <Content Include="Views\Promocion\Crear.cshtml" />
     <Content Include="Views\Promocion\Editar.cshtml" />
     <Content Include="Views\Promocion\Eliminar.cshtml" />
-    <Content Include="Views\Categoria\Crear.cshtml" />
-    <Content Include="Views\Categoria\Editar.cshtml" />
-    <Content Include="Views\Categoria\Eliminar.cshtml" />
     <Content Include="Views\Proveedor\Crear.cshtml" />
     <Content Include="Views\Proveedor\Editar.cshtml" />
     <Content Include="Views\Proveedor\Eliminar.cshtml" />

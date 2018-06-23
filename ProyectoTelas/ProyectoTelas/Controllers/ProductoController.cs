@@ -47,7 +47,7 @@ namespace ProyectoTelas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Producto producto, HttpPostedFileBase files, HttpPostedFileBase[] carrousel)
+        public ActionResult Create(Producto producto, HttpPostedFileBase files)
         {
             try
             {
@@ -68,46 +68,49 @@ namespace ProyectoTelas.Controllers
                     bool hasFile = false;
                     ImagenProducto oImgProduct = null;
 
-                    var validate = db.Producto.Select(x => x.Nombre == producto.Nombre).First();
-                    if (!validate)
+                    //var validate = db.Producto.Select(x => x.Nombre == producto.Nombre).First();
+                    //if (!validate)
+                    //{
+                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                     {
-                        if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
-                        {
-                            file.SaveAs(resultFilePath);
-                            producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
+                        file.SaveAs(resultFilePath);
+                        producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
 
-                            oImgProduct = new ImagenProducto();
-                            //oImgProduct.Tipo = file.ContentType;
-                            oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
-                            //oImgProduct.Estatus = true;
+                        oImgProduct = new ImagenProducto();
+                        //oImgProduct.Tipo = file.ContentType;
+                        oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
+                        //oImgProduct.Estatus = true;
 
-                            hasFile = true;
-                        }
-
-                        //producto.Estatus = true;
-                        db.Producto.Add(producto);
-                        db.SaveChanges();
-
-                        oImgProduct.ProductoID = producto.ProductoID;
-                        db.ImagenProducto.Add(oImgProduct);
-                        db.SaveChanges();
-
-                        if (hasFile)
-                        {
-                            oImgProduct.ProductoID = producto.ProductoID;
-                            db.SaveChanges();
-                        }
-
-
-                        //}
-
-                        return RedirectToAction("Index");
+                        hasFile = true;
                     }
+
+                    //producto.Estatus = true;
+                    //producto.ProveedorID = 1;
+                    db.Producto.Add(producto);
+                    db.SaveChanges();
+
+                    oImgProduct.ProductoID = producto.ProductoID;
+                    db.ImagenProducto.Add(oImgProduct);
+                    //producto.ProveedorID = 1;
+                    db.SaveChanges();
+
+                    if (hasFile)
+                    {
+                        //producto.ProveedorID = 1;
+                        oImgProduct.ProductoID = producto.ProductoID;
+                        db.SaveChanges();
+                    }
+
+
+                    //    //}
+
+                    //    return RedirectToAction("Index");
+                    //}
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                throw new Exception(SrvMessages.getMessageSQL(ex));
             }
 
             //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);

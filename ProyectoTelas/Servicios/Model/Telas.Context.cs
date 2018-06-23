@@ -25,7 +25,6 @@ namespace Servicios.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Contacto> Contacto { get; set; }
         public virtual DbSet<ImagenProducto> ImagenProducto { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }

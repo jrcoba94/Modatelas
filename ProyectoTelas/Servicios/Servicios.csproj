@@ -51,9 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Categoria.cs">
-      <DependentUpon>Telas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Contacto.cs">
       <DependentUpon>Telas.tt</DependentUpon>
     </Compile>
@@ -88,7 +85,6 @@
       <DependentUpon>Telas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicios\SrvCategoria.cs" />
     <Compile Include="Servicios\SrvMessages.cs" />
     <Compile Include="Servicios\SrvProducto.cs" />
     <Compile Include="Servicios\SrvPromociones.cs" />

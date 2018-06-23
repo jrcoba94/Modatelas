@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta name="google-site-verification" content="6Aqtf8frhqGKmv10yV9WpASBG5WfqJlT4s4fujdbnr4" />
     @RenderPage(Url.Content("~/Views/Shared/_Heads.cshtml"))
 </head>
 <body>
@@ -26,7 +27,7 @@
                 <div class="modal-body">Seleccione "Salir" si realmente usted desea cerrar sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="@Url.Action("Back", "Login")">Salir</a>
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Sitio")">Salir</a>
                 </div>
             </div>
         </div>
@@ -39,6 +40,17 @@
             @RenderPage(Url.Content("~/Views/Shared/_Footer.cshtml"))
         </footer>
     </div>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121081377-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121081377-1');
+    </script>
+
 </body>
 </html>
 
