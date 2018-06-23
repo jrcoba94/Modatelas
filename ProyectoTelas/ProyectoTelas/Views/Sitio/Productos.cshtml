@@ -1,18 +1,22 @@
-﻿@{
+﻿@model IEnumerable<Servicios.Model.Producto>
+@{
     Layout = "~/Views/Shared/_Principal.cshtml";
 }
 <div class="products">
     <div class="container">
         <h3><span>Productos</span></h3>
         <div class="products-top">
-            <div id="imageContent" class="col-md-3 prod">
-            </div>
+            @foreach(var item in Model){
+                <div id="" class="col-md-3 prod">
+                    <image src="@item.ImagenPortada" width="300"></image>
+                </div>
+            }
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 
-<script>
+@*<script>
     $(document).ready(function () {
         $.ajax({
             async: true,
@@ -27,4 +31,4 @@
             }
         });
     });
-</script>
+</script>*@

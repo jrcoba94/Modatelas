@@ -9,6 +9,7 @@ using Servicios.Model;
 using Servicios.Servicios;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Script.Serialization;
+using PagedList;
 
 namespace ProyectoTelas.Controllers
 {
@@ -47,7 +48,7 @@ namespace ProyectoTelas.Controllers
 
         public ActionResult Productos()
         {
-            var model = oSrvProducto.GetProducto();
+            var model = oSrvProducto.GetProducto().ToPagedList(page ?? 1, 5);
             return View("Productos",model);
         }
 
