@@ -93,7 +93,7 @@ namespace ProyectoTelas.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contacto(string receiverEmail, string subject, string message /*string nombre, string correo, string comentario*/)
+        public ActionResult Contacto(string receiverEmail, string subject, string message, Contacto oContacto, string correo)
         {
             try
             {
@@ -125,6 +125,14 @@ namespace ProyectoTelas.Controllers
                     {
                         smtp.Send(mess);
                     }
+
+                    //using (Entities db = new Entities())
+                    //{
+                    //    oContacto.CorreoElectronico = correo;
+                    //    db.Contacto.Add(oContacto);
+                    //    db.SaveChanges();
+                    //    return RedirectToAction("Index");
+                    //}
                 }
             }
             catch (Exception ex)

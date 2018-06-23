@@ -21,10 +21,6 @@ namespace ProyectoTelas.Controllers
 
         #endregion
         // GET: Proveedor
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
 
         public ActionResult Detalles(int id)
         {
