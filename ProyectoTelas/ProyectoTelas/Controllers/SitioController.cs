@@ -48,7 +48,7 @@ namespace ProyectoTelas.Controllers
 
         public ActionResult Productos()
         {
-            var model = oSrvProducto.GetProducto().ToPagedList(page ?? 1, 5);
+            var model = oSrvProducto.GetProducto();
             return View("Productos",model);
         }
 
@@ -59,9 +59,9 @@ namespace ProyectoTelas.Controllers
             try
             {
                 model = oSrvProducto.GetProducto();
-                respuesta = new { accion = true, msj = "", urlImage = model.Select(x=>x.ImagenProducto), Tipo = "Mensaje a Cliente" };
+                respuesta = new { accion = true, msj = "", urlImage = model.Select(x=>x.ImagenPortada), Tipo = "Mensaje a Cliente" };
             }
-            catch (ValidationException ex)
+            catch (ValidationException)
             {
                 respuesta = new { action = false, msj = "", urlImage = "", Tipo = "Mensaje a Cliente" };
             }

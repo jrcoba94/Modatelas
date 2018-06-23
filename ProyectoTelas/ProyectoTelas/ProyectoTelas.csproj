@@ -115,11 +115,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Imagenes\2wsqhbca.fbb_Tela2.jpg" />
-    <Content Include="Imagenes\davffvpi.on0_Tela4.jpg" />
-    <Content Include="Imagenes\lvxn3bcp.mg0_Tela6.jpg" />
-    <Content Include="Imagenes\o1j3v3li.yxo_Tela10.jpg" />
-    <Content Include="Imagenes\qdvffzqb.etc_Tela8.png" />
     <Content Include="Imagenes\User.png" />
     <None Include="Properties\PublishProfiles\Textile.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -137,7 +132,6 @@
     <Content Include="Content\css\FEbootstrap.css" />
     <Content Include="Content\css\FEflexslider.css" />
     <Content Include="Content\css\FEstyle.css" />
-    <Content Include="Imagenes\ztta4vmk.xae_Tela7.jpg" />
     <Content Include="Web.config" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Shared\_Heads.cshtml" />

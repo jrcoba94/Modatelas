@@ -7,8 +7,8 @@
         <h3><span>Productos</span></h3>
         <div class="products-top">
             @foreach(var item in Model){
-                <div id="" class="col-md-3 prod">
-                    <image src="@item.ImagenPortada" width="300"></image>
+                <div id="imageContent" class="col-md-3 prod-1">
+                    <image src="~/@item.ImagenPortada" width="200" height="200"></image>
                 </div>
             }
             <div class="clearfix"> </div>
@@ -20,13 +20,12 @@
     $(document).ready(function () {
         $.ajax({
             async: true,
-            type: 'POST',
+            type: 'GET',
             url: '@Url.Action("get_Productos", "Sitio")',
             success: function (data) {
-                $("#imageContent").html(data).append("<br/>");
-                var images = data.split("|||");
+                var images = data;
                 for (var i = 0, j = images.length; i < j; i++) {
-                    $("#imageContent").append("<img src='" + images[i] + "' width='300'>");
+                    $("#imageContent").append("<img src='~/" + images[i] + "' width='300'>");
                 }
             }
         });
