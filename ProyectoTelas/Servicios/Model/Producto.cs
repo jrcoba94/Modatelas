@@ -26,10 +26,8 @@ namespace Servicios.Model
         public string Descripcion { get; set; }
         public string Caracteristicas { get; set; }
         public string ImagenPortada { get; set; }
-        public int CategoriaID { get; set; }
         public int ProveedorID { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImagenProducto> ImagenProducto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

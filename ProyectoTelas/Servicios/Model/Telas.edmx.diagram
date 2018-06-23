@@ -5,17 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b734189cf7144e609960cf1ae67b9ca2" Name="Diagram1">
-        <EntityTypeShape EntityType="TelasModel.Categoria" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.Contacto" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.ImagenProducto" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.Producto" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.Promocion" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.Proveedor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TelasModel.Usuario" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="TelasModel.FK_Producto_Categoria" ManuallyRouted="false" />
-        <AssociationConnector Association="TelasModel.FK_ImagenProducto_Producto" ManuallyRouted="false" />
-        <AssociationConnector Association="TelasModel.FK_Promocion_Producto" ManuallyRouted="false" />
-        <AssociationConnector Association="TelasModel.FK_Proveedor_Producto" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TelasModel.Contacto" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TelasModel.ImagenProducto" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="TelasModel.Producto" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="TelasModel.Promocion" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="TelasModel.Proveedor" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="TelasModel.Usuario" Width="1.5" PointX="7.75" PointY="0.75" />
+        <AssociationConnector Association="TelasModel.FK_ImagenProducto_Producto" />
+        <AssociationConnector Association="TelasModel.FK_Promocion_Producto" />
+        <AssociationConnector Association="TelasModel.FK_Proveedor_Producto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
