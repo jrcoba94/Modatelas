@@ -7,15 +7,16 @@ using System.Web;
 using System.Web.Mvc;
 using Servicios.Model;
 using Servicios.Servicios;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Script.Serialization;
 
 namespace ProyectoTelas.Controllers
 {
     public class SitioController : Controller
     {
         #region Instancias y Variables
-
         SrvProveedor oSrvProveedor = new SrvProveedor();
-
+        SrvProducto oSrvProducto = new SrvProducto();
         #endregion
 
         // GET: Sitio
@@ -42,6 +43,28 @@ namespace ProyectoTelas.Controllers
         public ActionResult Contactanos()
         {
             return View("Contacto");
+        }
+
+        public ActionResult Productos()
+        {
+            var model = oSrvProducto.GetProducto();
+            return View("Productos",model);
+        }
+
+        public ActionResult get_Productos()
+        {
+            List<Producto> model;
+            Object respuesta = new Object();
+            try
+            {
+                model = oSrvProducto.GetProducto();
+                respuesta = new { accion = true, msj = "", urlImage = model.Select(x=>x.ImagenProducto), Tipo = "Mensaje a Cliente" };
+            }
+            catch (ValidationException ex)
+            {
+                respuesta = new { action = false, msj = "", urlImage = "", Tipo = "Mensaje a Cliente" };
+            }
+            return Json(new JavaScriptSerializer().Serialize(respuesta), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
