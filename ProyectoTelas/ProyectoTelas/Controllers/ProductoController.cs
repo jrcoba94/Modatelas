@@ -23,7 +23,6 @@ namespace ProyectoTelas.Controllers
         public ActionResult Index(int? page)
         {
             return View(db.Producto.ToList().ToPagedList(page ?? 1,5));
-            //return View();
         }
 
         public ActionResult Detalles(int id)
@@ -45,7 +44,6 @@ namespace ProyectoTelas.Controllers
         // GET: Productos/Create
         public ActionResult Create()
         {
-            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre");
             ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor");
             return View("Crear");
         }
@@ -65,7 +63,6 @@ namespace ProyectoTelas.Controllers
                 {
 
                     UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
-                    //string servername = Dashboard1._2.Properties.Settings.Default.NombreServidor;
                     HttpPostedFileBase file = Request.Files["files"];
                     var directorio = UploadDirectory;
                     string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
@@ -76,35 +73,26 @@ namespace ProyectoTelas.Controllers
                     bool hasFile = false;
                     ImagenProducto oImgProduct = null;
 
-                    //var validate = db.Producto.Select(x => x.Nombre == producto.Nombre).First();
-                    //if (!validate)
-                    //{
                     if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                     {
                         file.SaveAs(resultFilePath);
                         producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
 
                         oImgProduct = new ImagenProducto();
-                        //oImgProduct.Tipo = file.ContentType;
                         oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
-                        //oImgProduct.Estatus = true;
 
                         hasFile = true;
                     }
 
-                    //producto.Estatus = true;
-                    //producto.ProveedorID = 1;
                     db.Producto.Add(producto);
                     db.SaveChanges();
 
                     oImgProduct.ProductoID = producto.ProductoID;
                     db.ImagenProducto.Add(oImgProduct);
-                    //producto.ProveedorID = 1;
                     db.SaveChanges();
 
                     if (hasFile)
                     {
-                        //producto.ProveedorID = 1;
                         oImgProduct.ProductoID = producto.ProductoID;
                         db.SaveChanges();
                     }
@@ -121,7 +109,6 @@ namespace ProyectoTelas.Controllers
                 throw new Exception(SrvMessages.getMessageSQL(ex));
             }
 
-            //ViewBag.CategoriaId = new SelectList(db.Categoria, "CategoriaID", "Nombre", producto.CategoriaID);
             ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
             return View(producto);
 
@@ -159,6 +146,37 @@ namespace ProyectoTelas.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UploadDirectory = ProyectoTelas.Properties.Settings.Default.DirectorioImagenes;
+                    HttpPostedFileBase file = Request.Files["files"];
+                    var directorio = UploadDirectory;
+                    string pathRandom = Path.GetRandomFileName().Replace(/*'.', '-'*/"~/", "");
+                    string resultFileName = pathRandom + '_' + file.FileName.Replace("~/", "");
+                    string resultFileUrl = directorio + resultFileName;
+                    string resultFilePath = System.Web.HttpContext.Current.Request.MapPath(resultFileUrl);
+
+                    bool hasFile = false;
+                    ImagenProducto oImgProduct = null;
+                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                    {
+                        file.SaveAs(resultFilePath);
+                        producto.ImagenPortada = /*servername +*/ resultFileUrl.Replace("~/", "");
+
+                        oImgProduct = new ImagenProducto();
+                        oImgProduct.Url = producto.ImagenPortada.Replace("~/", "");
+
+                        hasFile = true;
+                    }
+                    db.SaveChanges();
+
+                    oImgProduct.ProductoID = producto.ProductoID;
+                    db.SaveChanges();
+
+                    if (hasFile)
+                    {
+                        oImgProduct.ProductoID = producto.ProductoID;
+                        db.SaveChanges();
+                    }
+
                     db.Entry(producto).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -170,7 +188,6 @@ namespace ProyectoTelas.Controllers
             }
             ViewBag.ProveedorId = new SelectList(db.Proveedor, "ProveedorID", "NombreProveedor", producto.ProveedorID);
             return View(producto);
-            //return View("Index", producto);
         }
 
         #endregion
