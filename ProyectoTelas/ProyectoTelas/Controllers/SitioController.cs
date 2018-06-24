@@ -67,6 +67,16 @@ namespace ProyectoTelas.Controllers
             }
             return Json(new JavaScriptSerializer().Serialize(respuesta), JsonRequestBehavior.AllowGet);
         }
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public string TipoObra(string clase, string subclase, string genero, string subgenero)
+        //{
+        //    srvLeads srv = new srvLeads();
+        //    // Return JSON data
+        //    List<EntTipoObra> data = srv.getTipoObra(clase, subclase, genero, subgenero);
+        //    JavaScriptSerializer js = new JavaScriptSerializer();
+        //    string retJSON = js.Serialize(data);
+        //    return retJSON;
+        //}
 
         [HttpPost]
         public ActionResult EnviarCorreo(Contacto oContacto, string nombre, string correo, string comentario)
@@ -100,10 +110,10 @@ namespace ProyectoTelas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderemail = new MailAddress("iamfastherz@gmail.com", "Demo");
+                    var senderemail = new MailAddress("mexicanastelas@gmail.com", "Telas Mexicanas");
                     var receiveremail = new MailAddress(receiverEmail, "Recibido");
 
-                    var password = "Champion12345";
+                    var password = "TELASmex2018";
                     var sub = subject;
                     var body = message;
 

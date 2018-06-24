@@ -17,17 +17,41 @@
 </div>
 
 @*<script>
-    $(document).ready(function () {
-        $.ajax({
-            async: true,
-            type: 'GET',
-            url: '@Url.Action("get_Productos", "Sitio")',
-            success: function (data) {
-                var images = data;
-                for (var i = 0, j = images.length; i < j; i++) {
-                    $("#imageContent").append("<img src='~/" + images[i] + "' width='300'>");
-                }
-            }
-        });
-    });
-</script>*@
+            $(document).ready(function () {
+                $.ajax({
+                    async: true,
+                    type: 'GET',
+                    url: '@Url.Action("get_Productos", "Sitio")',
+                    success: function (data) {
+                        var images = data;
+                        for (var i = 0, j = images.length; i < j; i++) {
+                            $("#imageContent").append("<img src='~/" + images[i] + "' width='300'>");
+                        }
+                    }
+                });
+            });
+            $("#Subgenero").change(function () {
+                $.ajax({
+                    dataType: "json",
+                    data: { clase: val("#Clase"), subclase: val("#SubClase"), genero: val("#Genero"), subgenero: val(this)},
+                    url: '@Url.Action("TipoObra", "Leads")',
+                    success: function (data) {
+                        setComboTipoObra(data, "#idtbl_tipoobra");
+                    }
+                });
+            });
+        function setComboTipoObra(data, idcombo) {
+        $(idcombo).empty();
+        if (data.length > 0) {
+            $(idcombo).append('<option value=""></option>');
+            var opts = (data);
+            $.each(opts, function (i, d) {
+
+                $(idcombo).append('<option value="' + d.idtbl_tipoobra + '">' + d.TipoObra + '</option>');
+            });
+        }
+        else {
+            $(idcombo).append('<option value="">Sin datos</option>');
+        }
+    }
+        </script>*@

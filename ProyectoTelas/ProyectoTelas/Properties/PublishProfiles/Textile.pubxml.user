@@ -46,7 +46,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/30/2013 18:15:20</publishTime>
     </File>
     <File Include="bin/ProyectoTelas.dll">
-      <publishTime>06/22/2018 16:30:26</publishTime>
+      <publishTime>06/23/2018 17:01:31</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -85,7 +85,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/Servicios.dll">
-      <publishTime>06/22/2018 16:30:24</publishTime>
+      <publishTime>06/23/2018 17:01:26</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
@@ -118,7 +118,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/21/2018 08:05:49</publishTime>
     </File>
     <File Include="Content/css/FEstyle.css">
-      <publishTime>06/22/2018 15:02:20</publishTime>
+      <publishTime>06/22/2018 17:02:53</publishTime>
     </File>
     <File Include="Content/css/font-awesome.min.css">
       <publishTime>06/19/2018 17:39:32</publishTime>
@@ -144,6 +144,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Content/fonts/FontAwesome.otf">
       <publishTime>06/18/2018 21:26:33</publishTime>
     </File>
+    <File Include="Content/images/bg_direction_nav.png">
+      <publishTime>06/22/2018 17:35:49</publishTime>
+    </File>
     <File Include="Content/js/analytics.js">
       <publishTime>06/21/2018 08:05:49</publishTime>
     </File>
@@ -157,7 +160,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/22/2018 12:46:55</publishTime>
     </File>
     <File Include="Content/js/FEjquery.min.js">
-      <publishTime>06/21/2018 08:05:49</publishTime>
+      <publishTime>06/22/2018 17:29:11</publishTime>
     </File>
     <File Include="Content/js/jquery.dataTables.js">
       <publishTime>06/18/2018 21:26:33</publishTime>
@@ -439,22 +442,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/20/2018 00:42:11</publishTime>
     </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>06/18/2018 21:26:32</publishTime>
+      <publishTime>06/22/2018 21:06:09</publishTime>
     </File>
     <File Include="Views/Producto/Crear.cshtml">
-      <publishTime>06/22/2018 10:12:14</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Producto/Detalle.cshtml">
-      <publishTime>06/22/2018 10:12:14</publishTime>
+      <publishTime>06/22/2018 20:00:49</publishTime>
     </File>
     <File Include="Views/Producto/Editar.cshtml">
-      <publishTime>06/22/2018 10:12:15</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Producto/Eliminar.cshtml">
-      <publishTime>06/20/2018 15:51:33</publishTime>
+      <publishTime>06/22/2018 20:00:49</publishTime>
     </File>
     <File Include="Views/Producto/Index.cshtml">
-      <publishTime>06/22/2018 10:12:15</publishTime>
+      <publishTime>06/23/2018 14:29:38</publishTime>
     </File>
     <File Include="Views/Promocion/Crear.cshtml">
       <publishTime>06/20/2018 00:42:11</publishTime>
@@ -466,13 +469,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/20/2018 15:51:33</publishTime>
     </File>
     <File Include="Views/Promocion/Index.cshtml">
-      <publishTime>06/18/2018 21:26:32</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Proveedor/Crear.cshtml">
       <publishTime>06/22/2018 10:12:15</publishTime>
     </File>
     <File Include="Views/Proveedor/Detalle.cshtml">
-      <publishTime>06/22/2018 10:12:15</publishTime>
+      <publishTime>06/22/2018 20:00:49</publishTime>
     </File>
     <File Include="Views/Proveedor/Editar.cshtml">
       <publishTime>06/22/2018 10:12:15</publishTime>
@@ -487,46 +490,46 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/21/2018 21:14:01</publishTime>
     </File>
     <File Include="Views/Shared/_FooterFE.cshtml">
-      <publishTime>06/22/2018 12:23:58</publishTime>
+      <publishTime>06/22/2018 17:58:36</publishTime>
     </File>
     <File Include="Views/Shared/_Heads.cshtml">
-      <publishTime>06/19/2018 17:46:15</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Shared/_HeadsFE.cshtml">
-      <publishTime>06/22/2018 13:48:13</publishTime>
+      <publishTime>06/22/2018 17:21:17</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/21/2018 08:05:49</publishTime>
+      <publishTime>06/23/2018 16:41:39</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutLogin.cshtml">
-      <publishTime>06/18/2018 21:26:32</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Shared/_Navbar.cshtml">
-      <publishTime>06/22/2018 10:12:15</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Shared/_NavbarFE.cshtml">
-      <publishTime>06/22/2018 14:40:47</publishTime>
+      <publishTime>06/22/2018 20:15:32</publishTime>
     </File>
     <File Include="Views/Shared/_Principal.cshtml">
-      <publishTime>06/22/2018 13:11:57</publishTime>
+      <publishTime>06/22/2018 19:57:40</publishTime>
     </File>
     <File Include="Views/Sitio/Contacto.cshtml">
-      <publishTime>06/22/2018 10:12:15</publishTime>
+      <publishTime>06/23/2018 16:02:31</publishTime>
     </File>
     <File Include="Views/Sitio/Index.cshtml">
       <publishTime>06/22/2018 03:17:08</publishTime>
     </File>
     <File Include="Views/Sitio/Mision.cshtml">
-      <publishTime>06/21/2018 13:30:37</publishTime>
+      <publishTime>06/23/2018 16:01:18</publishTime>
     </File>
     <File Include="Views/Sitio/Nosotros.cshtml">
-      <publishTime>06/21/2018 08:05:49</publishTime>
+      <publishTime>06/23/2018 16:02:03</publishTime>
     </File>
     <File Include="Views/Sitio/Productos.cshtml">
-      <publishTime>06/21/2018 08:05:49</publishTime>
+      <publishTime>06/23/2018 16:10:03</publishTime>
     </File>
     <File Include="Views/Sitio/Vision.cshtml">
-      <publishTime>06/21/2018 08:05:49</publishTime>
+      <publishTime>06/23/2018 16:00:39</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>06/18/2018 21:26:32</publishTime>
@@ -535,7 +538,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/18/2018 21:26:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/22/2018 16:30:28</publishTime>
+      <publishTime>06/23/2018 17:47:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
