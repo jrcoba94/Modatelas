@@ -46,7 +46,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/30/2013 18:15:20</publishTime>
     </File>
     <File Include="bin/ProyectoTelas.dll">
-      <publishTime>06/23/2018 17:01:31</publishTime>
+      <publishTime>06/25/2018 00:23:25</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -526,7 +526,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/23/2018 16:02:03</publishTime>
     </File>
     <File Include="Views/Sitio/Productos.cshtml">
-      <publishTime>06/23/2018 16:10:03</publishTime>
+      <publishTime>06/23/2018 21:50:09</publishTime>
     </File>
     <File Include="Views/Sitio/Vision.cshtml">
       <publishTime>06/23/2018 16:00:39</publishTime>
@@ -538,7 +538,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/18/2018 21:26:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/23/2018 17:47:32</publishTime>
+      <publishTime>06/24/2018 00:45:06</publishTime>
     </File>
   </ItemGroup>
 </Project>

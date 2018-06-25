@@ -49,7 +49,7 @@ namespace ProyectoTelas.Controllers
         public ActionResult Productos()
         {
             var model = oSrvProducto.GetProducto();
-            return View("Productos",model);
+            return View("Productos", model);
         }
 
         public ActionResult get_Productos()
@@ -59,7 +59,7 @@ namespace ProyectoTelas.Controllers
             try
             {
                 model = oSrvProducto.GetProducto();
-                respuesta = new { accion = true, msj = "", urlImage = model.Select(x=>x.ImagenPortada), Tipo = "Mensaje a Cliente" };
+                respuesta = new { accion = true, msj = "", urlImage = model.Select(x => x.ImagenPortada), Tipo = "Mensaje a Cliente" };
             }
             catch (ValidationException)
             {
@@ -104,47 +104,27 @@ namespace ProyectoTelas.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contacto(string receiverEmail, string subject, string message, Contacto oContacto, string correo)
+        public ActionResult Contacto(string receiverEmail, string subject, string message)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var senderemail = new MailAddress("mexicanastelas@gmail.com", "Telas Mexicanas");
-                    var receiveremail = new MailAddress(receiverEmail, "Recibido");
+                MailMessage co = new MailMessage();
+                co.From = new MailAddress(receiverEmail);
+                co.To.Add("mexicanastelas@gmail.com");
+                co.Subject = subject;
+                co.SubjectEncoding = System.Text.Encoding.UTF8;
+                co.Body = message;
+                co.BodyEncoding = System.Text.Encoding.UTF8;
+                co.IsBodyHtml = true;
+                co.Priority = MailPriority.Normal;
 
-                    var password = "TELASmex2018";
-                    var sub = subject;
-                    var body = message;
-
-                    var smtp = new SmtpClient
-                    {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(senderemail.Address, password)
-
-                    };
-
-                    using (var mess = new MailMessage(senderemail, receiveremail)
-                    {
-                        Subject = subject,
-                        Body = body
-                    })
-                    {
-                        smtp.Send(mess);
-                    }
-
-                    //using (Entities db = new Entities())
-                    //{
-                    //    oContacto.CorreoElectronico = correo;
-                    //    db.Contacto.Add(oContacto);
-                    //    db.SaveChanges();
-                    //    return RedirectToAction("Index");
-                    //}
-                }
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 25;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = new NetworkCredential("mexicanastelas@gmail.com", "TELASmex2018");
+                smtp.Send(co);
             }
             catch (Exception ex)
             {
